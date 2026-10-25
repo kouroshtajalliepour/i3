@@ -190,4 +190,20 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        font pango:JetBrainsMono Nerd Font 10
+        position bottom
+        separator_symbol " │ "
+        workspace_min_width 32
+
+        colors {
+                background #1e1e2e
+                statusline #cdd6f4
+                separator  #45475a
+
+                focused_workspace  #cba6f7 #cba6f7 #11111b
+                active_workspace   #45475a #313244 #cdd6f4
+                inactive_workspace #1e1e2e #1e1e2e #6c7086
+                urgent_workspace   #f38ba8 #f38ba8 #11111b
+                binding_mode       #f9e2af #f9e2af #11111b
+        }
 }
