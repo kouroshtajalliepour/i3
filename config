@@ -27,6 +27,14 @@ client.unfocused        #313244    #1e1e2e    #6c7086  #313244   #313244
 client.urgent           #f38ba8    #1e1e2e    #11111b  #f38ba8   #f38ba8
 client.placeholder      #1e1e2e    #1e1e2e    #cdd6f4  #000000   #1e1e2e
 client.background       #1e1e2e
+
+# startup layout: terminal+tmux on workspace 1, Firefox on workspace 2.
+# The terminal is matched by a one-off instance tag (set via --class on
+# the exec below) so this doesn't grab every future Alacritty window -
+# Firefox has no such tag, so every Firefox window always lands on ws2.
+assign [instance="tmux-startup"] 1
+assign [class="firefox"] 2
+
 # screen shots
 # Mod+Shift+4 -> Full screen screenshot
 # Mod+Shift+S -> Select an area, save it, and copy it to the clipboard
@@ -49,6 +57,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+# startup layout: terminal running tmux on workspace 1, Firefox on workspace 2
+# (see the "assign" rules above for how each lands on the right workspace)
+exec --no-startup-id alacritty --class Alacritty,tmux-startup -e tmux
+exec --no-startup-id firefox
 
 # low-battery desktop notifications (via dunst), requires the batsignal package
 exec --no-startup-id batsignal -w 20 -c 10 -f
