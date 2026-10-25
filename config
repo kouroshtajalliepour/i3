@@ -81,6 +81,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# physical lock key - goes through loginctl so xss-lock's already-configured
+# i3lock handles it the same way it does on suspend, not a separate path
+bindsym XF86ScreenSaver exec --no-startup-id loginctl lock-session
+bindsym XF86Lock exec --no-startup-id loginctl lock-session
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -94,8 +99,8 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# start dmenu (a program launcher), themed to match the rest (Catppuccin Mocha)
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrainsMono Nerd Font-11" -nb "#1e1e2e" -nf "#cdd6f4" -sb "#89b4fa" -sf "#11111b"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
