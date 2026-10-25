@@ -21,7 +21,7 @@ default_floating_border pixel 2
 hide_edge_borders smart
 
 # class                 border     background text     indicator child_border
-client.focused          #cba6f7    #1e1e2e    #cdd6f4  #cba6f7   #cba6f7
+client.focused          #89b4fa    #1e1e2e    #cdd6f4  #89b4fa   #89b4fa
 client.focused_inactive #45475a    #1e1e2e    #a6adc8  #45475a   #45475a
 client.unfocused        #313244    #1e1e2e    #6c7086  #313244   #313244
 client.urgent           #f38ba8    #1e1e2e    #11111b  #f38ba8   #f38ba8
@@ -49,6 +49,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+# low-battery desktop notifications (via dunst), requires the batsignal package
+exec --no-startup-id batsignal -w 20 -c 10 -f
 
 exec_always --no-startup-id setxkbmap -layout us,ir -option grp:alt_space_toggle
 # Use pactl to adjust volume in PulseAudio.
@@ -213,7 +216,7 @@ bar {
                 statusline #cdd6f4
                 separator  #45475a
 
-                focused_workspace  #cba6f7 #cba6f7 #11111b
+                focused_workspace  #89b4fa #89b4fa #11111b
                 active_workspace   #45475a #313244 #cdd6f4
                 inactive_workspace #1e1e2e #1e1e2e #6c7086
                 urgent_workspace   #f38ba8 #f38ba8 #11111b
