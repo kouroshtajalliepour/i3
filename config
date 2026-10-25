@@ -43,6 +43,13 @@ bindsym $mod+Shift+s exec --no-startup-id sh -c 'maim -s "$HOME/Screenshots/$(da
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# Propagate the session environment to systemd --user (so user services see
+# DISPLAY/DBUS/etc). Moved here from .xinitrc: that version ran *before*
+# exec i3 and would block waiting on the user D-Bus/systemd manager right at
+# login - this version runs as a normal non-blocking i3 exec instead, so it
+# can never delay i3 actually starting.
+exec --no-startup-id systemctl --user import-environment DISPLAY XAUTHORITY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
