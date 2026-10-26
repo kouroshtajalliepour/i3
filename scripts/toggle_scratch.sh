@@ -5,7 +5,8 @@
 # up from any other terminal with: tmux attach -t quick
 
 if ! i3-msg -t get_tree | grep -q '"instance": *"scratchterm"'; then
-  i3-msg -q exec alacritty --class Alacritty,scratchterm -e tmux new-session -A -s quick fish
+  setsid alacritty --class Alacritty,scratchterm -e tmux new-session -A -s quick fish >/dev/null 2>&1 &
+  disown
   for _ in $(seq 1 20); do
     i3-msg -t get_tree | grep -q '"instance": *"scratchterm"' && break
     sleep 0.1
