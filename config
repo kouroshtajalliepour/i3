@@ -35,6 +35,11 @@ client.background       #1e1e2e
 assign [instance="tmux-startup"] 1
 assign [class="firefox"] 2
 
+# drop-down scratch terminal (fish, tmux session "quick" - reattachable
+# from anywhere with `tmux attach -t quick`), toggled with $mod+grave
+for_window [instance="scratchterm"] move scratchpad, resize set 1000 650
+bindsym $mod+grave exec --no-startup-id ~/.config/i3/scripts/toggle_scratch.sh
+
 # screen shots
 # Mod+Shift+4 -> Full screen screenshot
 # Mod+Shift+S -> Select an area, save it, and copy it to the clipboard
